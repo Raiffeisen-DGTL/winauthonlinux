@@ -39,12 +39,15 @@ namespace WinAuth
             services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
                 .AddNegotiate(opt =>
                 {
-                     opt.EnableLdap(settings =>
+                     if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
                      {
-                         settings.Domain = "domain.ru";
-                         settings.MachineAccountName = Configuration.GetSection("LDAP")["Username"];
-                         settings.MachineAccountPassword = Configuration.GetSection("LDAP")["Password"];
-                     });
+                        opt.EnableLdap(settings =>
+                        {
+                            settings.Domain = "domain.ru";
+                            settings.MachineAccountName = Configuration.GetSection("LDAP")["Username"];
+                            settings.MachineAccountPassword = Configuration.GetSection("LDAP")["Password"];
+                        });
+                     }
                 });
             
             // чтобы корректно сериализовать в JSON объекты с циклическими референсами
