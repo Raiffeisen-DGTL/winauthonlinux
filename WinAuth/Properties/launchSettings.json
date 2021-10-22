@@ -1,0 +1,14 @@
+﻿{
+  "profiles": {
+    "WinAuth": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "applicationUrl": "http://localhost:8080",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "LDAPREFERRALS": "off"
+      }
+    }
+  }
+}
